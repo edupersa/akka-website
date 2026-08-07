@@ -1,11 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+
+const solutionLinks = [
+  { href: "/clinica-estetica", label: "Clínicas estéticas" },
+  { href: "/agente-de-voz", label: "Agente de voz para empresas" },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const solutionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -13,7 +21,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMenu = () => setOpen(false);
+  useEffect(() => {
+    if (!solutionsOpen) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (!solutionsRef.current?.contains(e.target as Node)) {
+        setSolutionsOpen(false);
+      }
+    };
+    document.addEventListener("click", onClickOutside);
+    return () => document.removeEventListener("click", onClickOutside);
+  }, [solutionsOpen]);
+
+  const closeMenu = () => {
+    setOpen(false);
+    setMobileSolutionsOpen(false);
+  };
 
   return (
     <header
@@ -57,6 +79,106 @@ export default function Navbar() {
           className="desktop-nav"
           aria-label="Navegación principal"
         >
+          {/* Soluciones dropdown */}
+          <div ref={solutionsRef} style={{ position: "relative" }}>
+            <button
+              type="button"
+              onClick={() => setSolutionsOpen((v) => !v)}
+              aria-haspopup="true"
+              aria-expanded={solutionsOpen}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: solutionsOpen ? "#fff" : "#8ba3be",
+                fontSize: 14,
+                fontWeight: 500,
+                fontFamily: "inherit",
+                padding: 0,
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLElement).style.color = "#fff")
+              }
+              onMouseLeave={(e) => {
+                if (!solutionsOpen)
+                  (e.currentTarget as HTMLElement).style.color = "#8ba3be";
+              }}
+            >
+              Soluciones
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                style={{
+                  transform: solutionsOpen ? "rotate(180deg)" : "none",
+                  transition: "transform 0.2s",
+                }}
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+
+            {solutionsOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  paddingTop: 14,
+                }}
+              >
+                <div
+                  style={{
+                    minWidth: 240,
+                    background: "#0d1428",
+                    border: "1px solid #1a3a6e",
+                    borderRadius: 12,
+                    padding: 8,
+                    boxShadow: "0 12px 32px rgba(0, 0, 0, 0.4)",
+                  }}
+                >
+                  {solutionLinks.map((s) => (
+                    <a
+                      key={s.href}
+                      href={s.href}
+                      onClick={() => setSolutionsOpen(false)}
+                      style={{
+                        display: "block",
+                        padding: "10px 12px",
+                        borderRadius: 8,
+                        color: "#c8d8ee",
+                        fontSize: 14,
+                        fontWeight: 500,
+                        textDecoration: "none",
+                        transition: "background 0.15s",
+                      }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLElement).style.background =
+                          "rgba(30,111,255,0.12)")
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLElement).style.background =
+                          "transparent")
+                      }
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           {["#servicios", "#por-que", "#proceso", "#reservas"].map(
             (href, i) => {
               const labels = ["Servicios", "Por qué AKKA", "Proceso", "Reservas"];
@@ -127,6 +249,67 @@ export default function Navbar() {
             padding: "12px 0 20px",
           }}
         >
+          {/* Soluciones accordion */}
+          <button
+            type="button"
+            onClick={() => setMobileSolutionsOpen((v) => !v)}
+            aria-expanded={mobileSolutionsOpen}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "13px 24px",
+              color: "#c8d8ee",
+              fontSize: 15,
+              fontWeight: 500,
+              fontFamily: "inherit",
+              borderBottom: "1px solid rgba(15, 33, 71, 0.5)",
+            }}
+          >
+            Soluciones
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              style={{
+                transform: mobileSolutionsOpen ? "rotate(180deg)" : "none",
+                transition: "transform 0.2s",
+              }}
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          {mobileSolutionsOpen &&
+            solutionLinks.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                onClick={closeMenu}
+                style={{
+                  display: "block",
+                  padding: "13px 24px 13px 40px",
+                  color: "#8ba3be",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  background: "rgba(30,111,255,0.06)",
+                  borderBottom: "1px solid rgba(15, 33, 71, 0.5)",
+                }}
+              >
+                {s.label}
+              </a>
+            ))}
+
           {[
             ["#servicios", "Servicios"],
             ["#por-que", "Por qué AKKA"],
