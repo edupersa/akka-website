@@ -1,9 +1,10 @@
-import { CALL_NUMBER, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
+import { AKKA_VOZ, AKKA_WHATSAPP, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
 
 const WA_LINK = buildWhatsAppLink(
-  "Hola, quiero saber más sobre los servicios de AKKA"
+  "Hola, quiero saber más sobre los servicios de AKKA",
+  AKKA_WHATSAPP
 );
-const CALL_LINK = buildCallLink(CALL_NUMBER);
+const CALL_LINK = buildCallLink(AKKA_VOZ);
 
 export default function Contact() {
   return (

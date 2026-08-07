@@ -1,9 +1,10 @@
-import { CALL_NUMBER, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
+import { AGENTE_VOZ, AGENTE_WHATSAPP, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
 
 const WA_LINK = buildWhatsAppLink(
-  "Hola, me interesa una consulta con AKKA Tech Solutions"
+  "Hola, me interesa una consulta con AKKA Tech Solutions",
+  AGENTE_WHATSAPP
 );
-const CALL_LINK = buildCallLink(CALL_NUMBER);
+const CALL_LINK = buildCallLink(AGENTE_VOZ);
 
 function FloatButton({
   href,

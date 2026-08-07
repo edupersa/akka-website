@@ -1,7 +1,7 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { CALL_NUMBER, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
+import { AGENTE_VOZ, AGENTE_WHATSAPP, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
 import LandingNav from "@/components/landing/LandingNav";
 import Booking from "@/components/Booking";
 import Contact from "@/components/Contact";
@@ -9,9 +9,10 @@ import Footer from "@/components/Footer";
 import WaFloat from "@/components/WaFloat";
 
 const WA_LINK = buildWhatsAppLink(
-  "Hola, quiero saber cómo la IA puede ayudar a mi clínica estética"
+  "Hola, quiero saber cómo la IA puede ayudar a mi clínica estética",
+  AGENTE_WHATSAPP
 );
-const CALL_LINK = buildCallLink(CALL_NUMBER);
+const CALL_LINK = buildCallLink(AGENTE_VOZ);
 
 const painPoints = [
   {

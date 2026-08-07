@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { buildWhatsAppLink } from "@/lib/contact-config";
+import { AKKA_WHATSAPP, buildWhatsAppLink } from "@/lib/contact-config";
 
 const WA_LINK = buildWhatsAppLink(
-  "Hola, quiero saber más sobre los servicios de AKKA"
+  "Hola, quiero saber más sobre los servicios de AKKA",
+  AKKA_WHATSAPP
 );
 
 const stats = [
