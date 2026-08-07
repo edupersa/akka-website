@@ -89,7 +89,8 @@ reserva de llamada por Calendly.
 
 - [ ] Calendly: confirmar que la cuenta acepta su DPA (Data Processing
       Agreement), desde la configuración de la cuenta.
-- [ ] WhatsApp: confirmar que el número +34614820732 está dado de alta como
+- [ ] WhatsApp: confirmar que los números +34614820732 (AKKA, contacto
+      directo) y +34614674681 (agente de voz IA) están dados de alta como
       WhatsApp Business (no personal) para uso comercial.
 
 ### Git
@@ -101,9 +102,11 @@ reserva de llamada por Calendly.
 ### Botones de contacto (flotante y CTA)
 *(origen: petición del usuario — botón flotante de llamada, 2026-07-16)*
 
-- [ ] Sustituir el número placeholder de llamadas (`CALL_NUMBER` en
-      [lib/contact-config.ts](lib/contact-config.ts), hoy igual al de
-      WhatsApp) por el número real del agente de voz IA.
+- [x] Sustituir el número placeholder de llamadas (ahora `AGENTE_VOZ` en
+      [lib/contact-config.ts](lib/contact-config.ts)) por el número real del
+      agente de voz IA: +34614674681 (2026-08-07). También se separó de los
+      números directos de contacto con AKKA (`AKKA_WHATSAPP`/`AKKA_VOZ`,
+      +34614820732), que hasta ahora compartían el mismo valor.
 - [x] Hacer clickeable también el **texto** de la etiqueta del botón
       flotante (2026-07-16): ahora es un link real al mismo destino que el
       botón, y usa el color de marca de cada acción (azul/blanco para
