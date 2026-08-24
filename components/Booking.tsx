@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useCookieConsent } from "@/lib/cookie-consent";
+import { pushDataLayerEvent } from "@/lib/gtm";
 
 // Replace this URL with your actual Calendly scheduling link once you set up your account at calendly.com
 const CALENDLY_URL = "https://calendly.com/info-akkaes/main-calendar";
@@ -19,6 +20,18 @@ export default function Booking() {
     return () => {
       document.body.removeChild(script);
     };
+  }, [calendlyAllowed]);
+
+  useEffect(() => {
+    if (!calendlyAllowed) return;
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== "https://calendly.com") return;
+      if (e.data?.event === "calendly.event_scheduled") {
+        pushDataLayerEvent({ event: "reserva_calendario", metodo: "calendario_web" });
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, [calendlyAllowed]);
 
   return (
