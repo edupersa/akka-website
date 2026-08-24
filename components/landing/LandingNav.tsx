@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { pushDataLayerEvent } from "@/lib/gtm";
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,6 +41,13 @@ export default function LandingNav() {
           href="/"
           style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}
           aria-label="AKKA Tech Solutions — inicio"
+          onClick={() =>
+            pushDataLayerEvent({
+              event: "navegacion_seccion",
+              pagina_origen: "landing",
+              pagina_destino: "principal",
+            })
+          }
         >
           <Image
             src="/akka_logo_01.png"

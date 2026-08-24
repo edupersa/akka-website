@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { useCookieConsent } from "@/lib/cookie-consent";
 
 const links = [
@@ -61,30 +62,13 @@ export default function Footer() {
               }}
               aria-label="AKKA Tech Solutions — inicio"
             >
-              <span
-                style={{
-                  background: "#1e6fff",
-                  color: "#fff",
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: 14,
-                  padding: "3px 8px",
-                  borderRadius: 6,
-                }}
-              >
-                AK
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: 17,
-                  color: "#fff",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                AKKA <span style={{ color: "#00c8e0" }}>Tech</span>
-              </span>
+              <Image
+                src="/akka_logo_01.png"
+                alt="AKKA Tech Solutions"
+                width={120}
+                height={40}
+                style={{ objectFit: "contain" }}
+              />
             </a>
             <p style={{ fontSize: 13, color: "#4a6080", margin: 0, maxWidth: 240, lineHeight: 1.6 }}>
               Automatización e IA para negocios que quieren crecer sin contratar más personal.

@@ -3,37 +3,19 @@
 import Script from "next/script";
 import { useCookieConsent } from "@/lib/cookie-consent";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 /**
- * Loads Google Analytics / Meta Pixel only once the user has given consent
- * for that category AND the corresponding tracking ID is configured via env
- * vars. Until NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_META_PIXEL_ID are set, nothing
- * renders — this just wires the consent gate ahead of time.
+ * Loads Meta Pixel only once the user has given consent for that category
+ * AND the corresponding tracking ID is configured via env vars.
+ * Google Tag Manager is installed separately in the root layout and does
+ * not require a client-side consent gate.
  */
 export default function Analytics() {
   const { choices } = useCookieConsent();
 
   return (
     <>
-      {choices.analiticas && GA_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', { anonymize_ip: true });
-            `}
-          </Script>
-        </>
-      )}
-
       {choices.marketing && META_PIXEL_ID && (
         <Script id="meta-pixel-init" strategy="afterInteractive">
           {`

@@ -2,11 +2,24 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { pushDataLayerEvent } from "@/lib/gtm";
 
 const solutionLinks = [
   { href: "/clinica-estetica", label: "Clínicas estéticas" },
   { href: "/agente-de-voz", label: "Agente de voz para empresas" },
 ];
+
+function trackSolutionClick(href: string) {
+  pushDataLayerEvent({
+    event: "ver_mas_detalles",
+    seccion_nombre: href.replace(/^\//, ""),
+  });
+  pushDataLayerEvent({
+    event: "navegacion_seccion",
+    pagina_origen: "principal",
+    pagina_destino: "landing",
+  });
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -151,7 +164,10 @@ export default function Navbar() {
                     <a
                       key={s.href}
                       href={s.href}
-                      onClick={() => setSolutionsOpen(false)}
+                      onClick={() => {
+                        setSolutionsOpen(false);
+                        trackSolutionClick(s.href);
+                      }}
                       style={{
                         display: "block",
                         padding: "10px 12px",
@@ -294,7 +310,10 @@ export default function Navbar() {
               <a
                 key={s.href}
                 href={s.href}
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu();
+                  trackSolutionClick(s.href);
+                }}
                 style={{
                   display: "block",
                   padding: "13px 24px 13px 40px",
