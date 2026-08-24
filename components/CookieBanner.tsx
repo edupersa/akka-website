@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useCookieConsent, type ConsentChoices } from "@/lib/cookie-consent";
+import { pushDataLayerEvent } from "@/lib/gtm";
+
+function trackConsent(accion: string, choices: ConsentChoices) {
+  pushDataLayerEvent({ event: "consentimiento_cookies", accion, ...choices });
+}
 
 const CATEGORY_INFO: {
   key: keyof ConsentChoices;
@@ -118,14 +123,28 @@ export default function CookieBanner() {
                 Configurar
               </button>
               <button
-                onClick={rejectNonEssential}
+                onClick={() => {
+                  trackConsent("rechazar_no_esenciales", {
+                    funcionales: false,
+                    analiticas: false,
+                    marketing: false,
+                  });
+                  rejectNonEssential();
+                }}
                 className="btn btn-ghost"
                 style={{ padding: "10px 18px", fontSize: 14 }}
               >
                 Rechazar no esenciales
               </button>
               <button
-                onClick={acceptAll}
+                onClick={() => {
+                  trackConsent("aceptar_todo", {
+                    funcionales: true,
+                    analiticas: true,
+                    marketing: true,
+                  });
+                  acceptAll();
+                }}
                 className="btn btn-primary"
                 style={{ padding: "10px 18px", fontSize: 14 }}
               >
@@ -287,7 +306,10 @@ export default function CookieBanner() {
                 Cancelar
               </button>
               <button
-                onClick={() => savePreferences(draft)}
+                onClick={() => {
+                  trackConsent("guardar_preferencias", draft);
+                  savePreferences(draft);
+                }}
                 className="btn btn-primary"
                 style={{ padding: "10px 18px", fontSize: 14 }}
               >

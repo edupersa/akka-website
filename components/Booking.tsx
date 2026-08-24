@@ -26,8 +26,16 @@ export default function Booking() {
     if (!calendlyAllowed) return;
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== "https://calendly.com") return;
-      if (e.data?.event === "calendly.event_scheduled") {
-        pushDataLayerEvent({ event: "reserva_calendario", metodo: "calendario_web" });
+      switch (e.data?.event) {
+        case "calendly.event_type_viewed":
+          pushDataLayerEvent({ event: "ver_calendario", metodo: "calendario_web" });
+          break;
+        case "calendly.date_and_time_selected":
+          pushDataLayerEvent({ event: "seleccion_horario_calendario", metodo: "calendario_web" });
+          break;
+        case "calendly.event_scheduled":
+          pushDataLayerEvent({ event: "reserva_calendario", metodo: "calendario_web" });
+          break;
       }
     };
     window.addEventListener("message", onMessage);

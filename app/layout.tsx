@@ -5,6 +5,7 @@ import "./globals.css";
 import { CookieConsentProvider } from "@/lib/cookie-consent";
 import CookieBanner from "@/components/CookieBanner";
 import Analytics from "@/components/Analytics";
+import ScrollDepthTracker from "@/components/ScrollDepthTracker";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -153,6 +154,7 @@ export default function RootLayout({
           {children}
           <CookieBanner />
           <Analytics />
+          <ScrollDepthTracker />
         </CookieConsentProvider>
       </body>
     </html>

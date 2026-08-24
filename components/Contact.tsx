@@ -107,6 +107,9 @@ export default function Contact() {
             <a
               href="mailto:info@akka.es"
               className="btn btn-ghost"
+              onClick={() =>
+                pushDataLayerEvent({ event: "click_email_contacto", ubicacion: "seccion_contacto" })
+              }
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
