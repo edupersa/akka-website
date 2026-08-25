@@ -81,7 +81,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() =>
-                pushDataLayerEvent({ event: "abrir_chat_ia", origen: "seccion_contacto" })
+                pushDataLayerEvent({ event: "abrir_chat_akka", origen: "seccion_contacto" })
               }
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -95,7 +95,7 @@ export default function Contact() {
               href={CALL_LINK}
               className="btn btn-primary"
               onClick={() =>
-                pushDataLayerEvent({ event: "click_llamada_ia", ubicacion: "seccion_contacto" })
+                pushDataLayerEvent({ event: "click_llamada_akka", ubicacion: "seccion_contacto" })
               }
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
