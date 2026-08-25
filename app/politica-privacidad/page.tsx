@@ -12,7 +12,7 @@ export default function PoliticaPrivacidadPage() {
   return (
     <LegalLayout>
       <h1>Política de Privacidad</h1>
-      <p className="legal-updated">Última actualización: 4 de julio de 2026</p>
+      <p className="legal-updated">Última actualización: 25 de agosto de 2026</p>
 
       <p>
         En AKKA Tech Solutions tratamos tus datos personales con
@@ -53,6 +53,11 @@ export default function PoliticaPrivacidadPage() {
           </thead>
           <tbody>
             <tr>
+              <td>Formulario de contacto (web)</td>
+              <td>Nombre, email y, si los aportas, teléfono y mensaje</td>
+              <td>Atender tu consulta y contactarte para ofrecerte información comercial</td>
+            </tr>
+            <tr>
               <td>WhatsApp</td>
               <td>Nombre, número de teléfono y contenido de la conversación</td>
               <td>Atender tu consulta y ofrecerte información comercial</td>
@@ -89,6 +94,12 @@ export default function PoliticaPrivacidadPage() {
           RGPD).
         </li>
         <li>
+          <strong>Formulario de contacto:</strong> tu consentimiento
+          expreso, otorgado al marcar la casilla de aceptación antes de
+          enviar el formulario (art. 6.1.a RGPD). Puedes retirarlo en
+          cualquier momento solicitando la supresión de tus datos.
+        </li>
+        <li>
           <strong>Cookies analíticas y de marketing:</strong> tu
           consentimiento expreso, otorgado a través del banner de cookies
           (art. 6.1.a RGPD). Puedes retirarlo en cualquier momento.
@@ -113,8 +124,10 @@ export default function PoliticaPrivacidadPage() {
         </li>
         <li>
           <strong>Google Ireland Ltd.</strong> — alojamiento del correo
-          electrónico y, si en el futuro aceptas cookies analíticas, Google
-          Analytics.
+          electrónico; almacenamiento temporal de los envíos del formulario
+          de contacto (en una hoja de cálculo de Google Sheets, mientras no
+          exista un sistema propio de gestión de clientes); y, si en el
+          futuro aceptas cookies analíticas, Google Analytics.
         </li>
         <li>
           <strong>Meta Platforms Ireland Ltd.</strong> — si en el futuro
@@ -172,9 +185,10 @@ export default function PoliticaPrivacidadPage() {
       <h2>8. Origen de los datos</h2>
       <p>
         Los datos que tratamos proceden directamente de ti, a través de los
-        canales de contacto que utilices (WhatsApp, correo electrónico o el
-        formulario de reserva de Calendly), o de tu navegación en el Sitio
-        Web si aceptas cookies analíticas o de marketing.
+        canales de contacto que utilices (formulario de contacto, WhatsApp,
+        correo electrónico o el formulario de reserva de Calendly), o de tu
+        navegación en el Sitio Web si aceptas cookies analíticas o de
+        marketing.
       </p>
 
       <h2>9. Seguridad</h2>

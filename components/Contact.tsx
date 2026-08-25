@@ -1,5 +1,6 @@
 import { AKKA_VOZ, AKKA_WHATSAPP, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
 import { pushDataLayerEvent } from "@/lib/gtm";
+import LeadForm from "@/components/LeadForm";
 
 const WA_LINK = buildWhatsAppLink(
   "Hola, quiero saber más sobre los servicios de AKKA",
@@ -134,6 +135,23 @@ export default function Contact() {
             <span>Respuesta en menos de 24h</span>
             <span>·</span>
             <span>Consulta inicial gratuita</span>
+          </div>
+
+          <div
+            style={{
+              borderTop: "1px solid #1a3a6e",
+              marginTop: 36,
+              paddingTop: 32,
+              textAlign: "left",
+              maxWidth: 480,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <p style={{ color: "#8ba3be", fontSize: 14, textAlign: "center", marginBottom: 20 }}>
+              O déjanos tus datos y te contactamos nosotros
+            </p>
+            <LeadForm />
           </div>
         </div>
       </div>
