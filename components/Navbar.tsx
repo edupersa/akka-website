@@ -21,6 +21,13 @@ function trackSolutionClick(href: string) {
   });
 }
 
+function trackNavClick(href: string) {
+  pushDataLayerEvent({
+    event: "click_menu_navegacion",
+    seccion: href.replace(/^#/, ""),
+  });
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -202,6 +209,7 @@ export default function Navbar() {
                 <a
                   key={href}
                   href={href}
+                  onClick={() => trackNavClick(href)}
                   style={{
                     color: "#8ba3be",
                     fontSize: 14,
@@ -221,7 +229,12 @@ export default function Navbar() {
               );
             }
           )}
-          <a href="#contacto" className="btn btn-ghost" style={{ padding: "9px 20px", fontSize: 14 }}>
+          <a
+            href="#contacto"
+            className="btn btn-ghost"
+            style={{ padding: "9px 20px", fontSize: 14 }}
+            onClick={() => trackNavClick("#contacto")}
+          >
             Contactar
           </a>
         </nav>
@@ -339,7 +352,10 @@ export default function Navbar() {
             <a
               key={href}
               href={href}
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                trackNavClick(href);
+              }}
               style={{
                 display: "block",
                 padding: "13px 24px",
