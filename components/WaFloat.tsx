@@ -107,6 +107,29 @@ export default function WaFloat() {
         }}
       >
         <FloatButton
+          href="#reservas"
+          label="Reservar cita"
+          ariaLabel="Reservar una cita"
+          bg="#8b5cf6"
+          hoverBg="#9d70ff"
+          shadow="0 4px 20px rgba(139, 92, 246, 0.40)"
+          hoverShadow="0 8px 32px rgba(139, 92, 246, 0.55)"
+          labelTextColor="#fff"
+          pulseClass="book-float-pulse"
+          labelDelay="0s"
+          onClick={() =>
+            pushDataLayerEvent({ event: "click_reservar", ubicacion: "flotante" })
+          }
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </FloatButton>
+
+        <FloatButton
           href={CALL_LINK}
           label="Llamar a IA"
           ariaLabel="Llamar a IA"
@@ -116,7 +139,7 @@ export default function WaFloat() {
           hoverShadow="0 8px 32px rgba(30, 111, 255, 0.55)"
           labelTextColor="#fff"
           pulseClass="call-float-pulse"
-          labelDelay="0s"
+          labelDelay="2.3s"
           onClick={() =>
             pushDataLayerEvent({ event: "click_llamada_ia", ubicacion: "flotante" })
           }
@@ -137,7 +160,7 @@ export default function WaFloat() {
           hoverShadow="0 8px 32px rgba(37, 211, 102, 0.55)"
           labelTextColor="#000"
           pulseClass="wa-float-pulse"
-          labelDelay="4s"
+          labelDelay="4.6s"
           onClick={() =>
             pushDataLayerEvent({ event: "abrir_chat_ia", origen: "boton_flotante" })
           }
@@ -155,7 +178,7 @@ export default function WaFloat() {
           70%  { transform: scale(1.65); opacity: 0; }
           100% { transform: scale(1.65); opacity: 0; }
         }
-        .wa-float-pulse, .call-float-pulse {
+        .wa-float-pulse, .call-float-pulse, .book-float-pulse {
           position: absolute;
           inset: 0;
           border-radius: 50%;
@@ -164,6 +187,7 @@ export default function WaFloat() {
         }
         .wa-float-pulse { border: 2px solid rgba(37, 211, 102, 0.45); }
         .call-float-pulse { border: 2px solid rgba(30, 111, 255, 0.45); }
+        .book-float-pulse { border: 2px solid rgba(139, 92, 246, 0.45); }
 
         .float-label {
           display: inline-flex;
